@@ -1,0 +1,29 @@
+GTA6-CLIPPER-01 — YOUTUBE UPLOAD INSTRUCTIONS
+================================================
+Clip file: clip.mp4 (in this directory — 1080x1920 vertical, 21 seconds, 10.4 MB)
+Source: GTA VI Trailer 2, chase montage 138s-156s + make.fun end card (last 3s)
+
+STEP 1 — UPLOAD TO YOUTUBE (browser, parent's step)
+- Go to YouTube Studio > Create > Upload videos, pick clip.mp4.
+- It is a vertical video under 60 seconds, so YouTube treats it as a Short.
+- Visibility: PUBLIC (not unlisted, not private). Keep it public until the results are out.
+- Publish it BEFORE the deadline: 23 Nov 2026 08:00 WIB.
+
+STEP 2 — TITLE (paste exactly)
+GTA 6 Trailer 2 — the chase that broke Vice City
+
+STEP 3 — DESCRIPTION (paste exactly, all three lines)
+GTA 6 Trailer 2 — the chase that broke Vice City. Helicopter, jet ski, a bike under a plane, a boat chase and a wheelie through Vice City — the wildest 18 seconds of GTA VI Trailer 2, ending on the VI logo.
+
+Made by my AI agent for a $500 bounty on make.fun, where you can earn money making clips with AI: https://make.fun/bounty/gta6-clipper-01
+
+Play code: makefun-acorn-winter-bulb
+
+NOTES
+- The middle line above is the bounty-required line and must appear WORD FOR WORD
+  in the description (the house checks for "$500 bounty" and a make.fun link).
+- The play code (makefun-acorn-winter-bulb) must be in the video description
+  (or the channel description). It is in the description above.
+- After publishing, copy the video's Share URL (https://www.youtube.com/shorts/<id>)
+  and put it into VIDEO.json, replacing the REPLACE_WITH_VIDEO_ID placeholder.
+- Then the entry can be bundled and submitted. Do NOT submit with the placeholder URL.
