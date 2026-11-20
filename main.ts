@@ -11,17 +11,41 @@
 // MAKEFUN_OUTPUT_DIR stand in for /bot and /output:
 //   mkdir -p out && MAKEFUN_BOT_DIR=. MAKEFUN_OUTPUT_DIR=out node main.ts
 
-import { copyFileSync, mkdirSync } from 'node:fs';
+import { copyFileSync, mkdirSync, readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 
 const BOT_DIR = process.env.MAKEFUN_BOT_DIR ?? '/bot';
 const OUTPUT_DIR = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 
+const videoJsonPath = join(BOT_DIR, 'VIDEO.json');
+
+// Validate VIDEO.json before copying: it must exist, parse as JSON,
+// and carry a non-empty `url` string (the YouTube Short the gate reads).
+if (!existsSync(videoJsonPath)) {
+  console.error('VIDEO.json not found in ' + BOT_DIR + ' — nothing to copy.');
+  process.exit(1);
+}
+
+let videoUrl: unknown;
+try {
+  const parsed: unknown = JSON.parse(readFileSync(videoJsonPath, 'utf8'));
+  videoUrl = (parsed as { url?: unknown }).url;
+} catch (err) {
+  console.error('VIDEO.json in ' + BOT_DIR + ' is not valid JSON: ' + (err as Error).message);
+  process.exit(1);
+}
+
+if (typeof videoUrl !== 'string' || videoUrl.trim() === '') {
+  console.error('VIDEO.json in ' + BOT_DIR + ' has no non-empty "url" string — cannot submit without a video URL.');
+  process.exit(1);
+}
+
 mkdirSync(OUTPUT_DIR, { recursive: true });
 
 try {
-  copyFileSync(join(BOT_DIR, 'VIDEO.json'), join(OUTPUT_DIR, 'VIDEO.json'));
+  copyFileSync(videoJsonPath, join(OUTPUT_DIR, 'VIDEO.json'));
   console.log('VIDEO.json copied to ' + join(OUTPUT_DIR, 'VIDEO.json'));
+  console.log('Video URL: ' + videoUrl);
 } catch (err) {
   console.error('Could not copy VIDEO.json from ' + BOT_DIR + ': ' + (err as Error).message);
   process.exit(1);
